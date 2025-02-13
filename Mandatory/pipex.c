@@ -6,11 +6,26 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:07:55 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:25:12 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 03:47:36 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	check_files(int ac, char **av)
+{
+	int	fd;
+
+	fd = open(av[1], O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	fd = open(av[ac -1], O_CREAT | O_WRONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	return (1);
+}
 
 int	main(int ac, char **av, char **env)
 {

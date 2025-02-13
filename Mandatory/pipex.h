@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:25:42 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 03:48:48 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,23 @@ int		ft_strncmp(char *s1, char *s2, size_t size);
 // exec
 int		exec(t_exec *head, int ac, char **av, char *path);
 
+// list
+t_exec	*new_node(void);
+void	add_back(t_exec **head, t_exec *new);
+t_list	*new_list(char *value);
+size_t	list_size(t_list *list);
+void	add_back_list(t_list **head, t_list *new);
+
 // ft_split
 char	**ft_split(char const *s, char c);
 
 // exec_utils
-t_exec	*new_node(void);
-void	add_back(t_exec **head, t_exec *new);
 char	*get_cmd_path(char *cmd, char *path);
 t_exec	*set_up(char *arg, char *path);
 
 // parsing
 char	*get_path(char **env);
-t_list	*new_list(char *value);
 t_list	*parser(char *arg);
-size_t	list_size(t_list *list);
-void	add_back_list(t_list **head, t_list *new);
 char	*joinchar(char *s, char c);
 int		check_files(int ac, char **av);
 int		handle_word(t_list **head, int *i, char *arg);

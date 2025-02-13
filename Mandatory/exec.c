@@ -6,11 +6,12 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:15:08 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 03:51:52 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
 
 int	exec(t_exec *head, int ac, char **av, char *path)
 {

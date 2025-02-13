@@ -6,40 +6,17 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:22:25 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:12:49 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 03:44:49 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-t_exec	*new_node(void)
+void	cmd_not_found(char *cmd)
 {
-	t_exec	*ret;
-
-	ret = malloc(sizeof(t_exec));
-	if (!ret)
-		return (NULL);
-	ret->fd_in = 0;
-	ret->fd_out = 1;
-	ret->cmd = NULL;
-	ret->opt = NULL;
-	ret->next = NULL;
-	return (ret);
-}
-
-void	add_back(t_exec **head, t_exec *new)
-{
-	t_exec	*tmp;
-
-	if (!*head)
-		*head = new;
-	else
-	{
-		tmp = *head;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
+	write(2, cmd, ft_strlen(cmd));
+	write(2, ": command not found\n", ft_strlen(": command not found\n"));
+	exit(127);
 }
 
 char	*get_cmd_path(char *cmd, char *path)
@@ -52,9 +29,7 @@ char	*get_cmd_path(char *cmd, char *path)
 	{
 		if (access(cmd, F_OK | X_OK) == 0)
 			return (cmd);
-		write(2, cmd, ft_strlen(cmd));
-		write(2, ": command not found\n", ft_strlen(": command not found\n"));
-		exit(127);
+		cmd_not_found(cmd);
 		return (NULL);
 	}
 	arr = ft_split(path, ':');
@@ -69,9 +44,7 @@ char	*get_cmd_path(char *cmd, char *path)
 			return (tmp);
 		i++;
 	}
-	write(2, cmd, ft_strlen(cmd));
-	write(2, ": command not found\n", ft_strlen(": command not found\n"));
-	exit(127);
+	cmd_not_found(cmd);
 	return (NULL);
 }
 
