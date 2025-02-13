@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:36:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 01:36:20 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:02:06 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ char	*ft_itoa(int n)
 		return (ft_strdup("0"));
 	else if (num < 0)
 		(1) && (len++, flag = 1, num *= -1);
-	s = malloc (len + 1);
-	if (!s)
-		return (NULL);
+	s = ft_malloc (len + 1, ALLOC);
 	if (flag == 1)
 		s[0] = '-';
 	s[len] = '\0';

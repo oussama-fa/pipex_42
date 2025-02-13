@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:32:08 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:14:53 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:05:48 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ char	*joinchar(char *s, char c)
 	char	*ret;
 	int		i;
 
-	ret = malloc(ft_strlen(s) + 2);
-	if (!ret)
-		return (NULL);
+	ret = ft_malloc(ft_strlen(s) + 2, ALLOC);
 	i = 0;
 	while (s && s[i])
 	{

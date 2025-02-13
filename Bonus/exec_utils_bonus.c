@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:34:15 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:13:02 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:01:50 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ t_exec	*set_up(char *arg)
 	ret = new_node();
 	args = parser(arg);
 	ret->cmd = args->value;
-	opt = malloc((list_size(args) + 1) * sizeof(char *));
-	if (!opt)
-		return (NULL);
+	opt = ft_malloc((list_size(args) + 1) * sizeof(char *), ALLOC);
 	i = 0;
 	while (args)
 	{

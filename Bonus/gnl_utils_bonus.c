@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 20:17:22 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 01:52:05 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:04:23 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,7 @@ char	*ft_strdup_gnl(char *s1)
 
 	if (!s1)
 		return (NULL);
-	s2 = malloc (ft_strlen(s1) + 1);
-	if (!s2)
-		return (NULL);
+	s2 = ft_malloc (ft_strlen(s1) + 1, ALLOC);
 	i = -1;
 	while (s1[++i])
 		s2[i] = s1[i];
@@ -67,7 +65,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		return (NULL);
 	if (!s1)
 		return (ft_strdup_gnl(s2));
-	ret = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	ret = ft_malloc(ft_strlen(s1) + ft_strlen(s2) + 1, ALLOC);
 	if (!ret)
 		return (free(s1), NULL);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:53:27 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:23:25 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
+# include "garbage.h"
 
 typedef struct s_exec
 {

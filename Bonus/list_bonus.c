@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 04:11:00 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:12:06 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:05:30 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ t_list	*new_list(char *value)
 {
 	t_list	*ret;
 
-	ret = malloc(sizeof(t_list));
-	if (!ret)
-		return (NULL);
+	ret = ft_malloc(sizeof(t_list), ALLOC);
 	ret->value = value;
 	ret->next = NULL;
 	return (ret);
@@ -56,9 +54,7 @@ t_exec	*new_node(void)
 {
 	t_exec	*ret;
 
-	ret = malloc(sizeof(t_exec));
-	if (!ret)
-		return (NULL);
+	ret = ft_malloc(sizeof(t_exec), ALLOC);
 	ret->fd_in = 0;
 	ret->fd_out = 1;
 	ret->cmd = NULL;

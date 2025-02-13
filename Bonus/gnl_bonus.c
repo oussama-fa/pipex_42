@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:36:12 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 01:51:54 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:03:38 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ static char	*get_linis(char *str)
 		count++;
 	if (str[count] == '\n')
 		count++;
-	ret = malloc(count + 1);
-	if (!ret)
-		return (NULL);
+	ret = ft_malloc(count + 1, ALLOC);
 	i = 0;
 	while (i < count)
 		ret[i++] = *(str++);
@@ -51,7 +49,7 @@ static char	*read_to_rest(int fd, char *rest)
 	char	*temp;
 	int		rd;
 
-	temp = malloc((size_t)BUFFER_SIZE + 1);
+	temp = ft_malloc((size_t)BUFFER_SIZE + 1, ALLOC);
 	if (!temp)
 		return (free(rest), NULL);
 	while (!ft_strchr_gnl(rest, '\n'))

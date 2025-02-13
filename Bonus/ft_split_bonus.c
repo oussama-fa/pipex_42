@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:37:20 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 01:51:45 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:28:13 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ static char	*ft_strndup(char *str, size_t n)
 	char	*s;
 
 	i = 0;
-	s = malloc(n + 1);
-	if (!s)
-		return (NULL);
+	s = ft_malloc(n + 1, ALLOC);
 	while (n--)
 	{
 		s[i] = str[i];
@@ -83,9 +81,8 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	(1) && (i = 0, word = 0, start = 0);
-	strs = malloc((sizeof(char *)) * (ft_countwords((char *)s, c) + 1));
-	if (!strs)
-		return (NULL);
+	strs = ft_malloc((sizeof(char *)) *(ft_countwords((char *)s, c) + 1),
+			ALLOC);
 	while (s[i])
 	{
 		start = ft_split_helper(&i, s, c);

@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:44:41 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:18:21 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:04:55 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*get_file_name(void)
 	char	*file;
 	char	*n;
 
-	n = malloc(1);
+	n = ft_malloc(1, ALLOC);
 	file = ft_itoa((long)n);
 	file = ft_strjoin("/tmp/.tmp", file);
 	if (!file)
