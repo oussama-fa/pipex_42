@@ -6,7 +6,7 @@
 #    By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:53:14 by oufarah           #+#    #+#              #
-#    Updated: 2025/02/13 03:48:03 by oufarah          ###   ########.fr        #
+#    Updated: 2025/02/13 04:12:21 by oufarah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = Mandatory/exec.c Mandatory/exec_utils.c Mandatory/ft_split.c  Mandatory/pa
 		Mandatory/pipex.c  Mandatory/utils.c Mandatory/list.c
 SRC_B = Bonus/exec_bonus.c  Bonus/exec_utils_bonus.c  Bonus/ft_itoa_bonus.c  Bonus/ft_split_bonus.c \
 		Bonus/gnl_bonus.c  Bonus/gnl_utils_bonus.c  Bonus/heredoc_bonus.c  Bonus/parsing_bonus.c \
-		Bonus/pipex_bonus.c Bonus/utils_bonus.c
+		Bonus/pipex_bonus.c Bonus/utils_bonus.c Bonus/list_bonus.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_B = $(SRC_B:.c=.o)

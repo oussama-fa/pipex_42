@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:32:08 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:39:25 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:14:53 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,6 @@ char	*get_path(char **env)
 	return (NULL);
 }
 
-t_list	*new_list(char *value)
-{
-	t_list	*ret;
-
-	ret = malloc(sizeof(t_list));
-	if (!ret)
-		return (NULL);
-	ret->value = value;
-	ret->next = NULL;
-	return (ret);
-}
-
-void	add_back_list(t_list **head, t_list *new)
-{
-	t_list	*tmp;
-
-	if (!*head)
-		*head = new;
-	else
-	{		
-		tmp = *head;
-		while (tmp && tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-}
-
 char	*joinchar(char *s, char c)
 {
 	char	*ret;
@@ -80,19 +53,6 @@ char	*joinchar(char *s, char c)
 	ret[i] = c;
 	ret[++i] = '\0';
 	return (ret);
-}
-
-size_t	list_size(t_list *list)
-{
-	size_t	i;
-
-	i = 0;
-	while (list)
-	{
-		i++;
-		list = list->next;
-	}
-	return (i);
 }
 
 int	handle_word(t_list **head, int *i, char *arg)
@@ -136,8 +96,10 @@ t_list	*parser(char *arg)
 {
 	t_list	*head;
 	int		i;
+	int		flg;
 
 	i = 0;
+	flg = 1;
 	head = NULL;
 	while (arg[i])
 	{
@@ -145,30 +107,16 @@ t_list	*parser(char *arg)
 			i++;
 		if (arg[i] != '\'' && arg[i] != '\"')
 		{
-			handle_word(&head, &i, arg); // protect if 0 is returned
+			flg = handle_word(&head, &i, arg);
+			if (flg == 0)
+				return (NULL);
 		}
 		else if (arg[i])
 		{
-			handle_quotes(&head, &i, arg); // protect if 0 is returned
+			flg = handle_quotes(&head, &i, arg);
+			if (flg == 0)
+				return (NULL);
 		}
 	}
 	return (head);
-}
-
-int	check_files(int ac, char **av, int here_doc)
-{
-	int	fd;
-
-	if (!here_doc)
-	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
-			return (0);
-		close(fd);
-	}
-	fd = open(av[ac -1], O_CREAT | O_WRONLY);
-	if (fd == -1)
-		return (0);
-	close(fd);
-	return (1);
 }

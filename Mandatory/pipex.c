@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:07:55 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 03:47:36 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:09:20 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int ac, char **av, char **env)
 	head = NULL;
 	while (i < ac - 1)
 	{
-		tmp = set_up(av[i], path);
+		tmp = set_up(av[i]);
 		add_back(&head, tmp);
 		i++;
 	}

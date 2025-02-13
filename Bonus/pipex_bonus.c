@@ -6,11 +6,29 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:49:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:41:14 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:15:09 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+int	check_files(int ac, char **av, int here_doc)
+{
+	int	fd;
+
+	if (!here_doc)
+	{
+		fd = open(av[1], O_RDONLY);
+		if (fd == -1)
+			return (0);
+		close(fd);
+	}
+	fd = open(av[ac -1], O_CREAT | O_WRONLY);
+	if (fd == -1)
+		return (0);
+	close(fd);
+	return (1);
+}
 
 int	main(int ac, char **av, char **env)
 {
@@ -32,7 +50,7 @@ int	main(int ac, char **av, char **env)
 	head = NULL;
 	while (i < ac - 1)
 	{
-		tmp = set_up(av[i], path);
+		tmp = set_up(av[i]);
 		add_back(&head, tmp);
 		i++;
 	}

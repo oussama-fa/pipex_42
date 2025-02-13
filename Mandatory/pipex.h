@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 03:48:48 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:09:22 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**ft_split(char const *s, char c);
 
 // exec_utils
 char	*get_cmd_path(char *cmd, char *path);
-t_exec	*set_up(char *arg, char *path);
+t_exec	*set_up(char *arg);
 
 // parsing
 char	*get_path(char **env);

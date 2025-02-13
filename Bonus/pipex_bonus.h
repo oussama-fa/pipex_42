@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:44:32 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:14:14 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ typedef struct s_list
 // parsing
 char	*get_path(char **env);
 char	*joinchar(char *s, char c);
-void	add_back_list(t_list **head, t_list *new);
-t_list	*new_list(char *value);
-size_t	list_size(t_list *list);
 t_list	*parser(char *arg);
 int		handle_word(t_list **head, int *i, char *arg);
 int		handle_quotes(t_list **head, int *i, char *arg);
@@ -53,10 +50,15 @@ int		check_files(int ac, char **av, int here_doc);
 int		exec(t_exec *head, int ac, char **av, char *path);
 
 // exec utils
+char	*get_cmd_path(char *cmd, char *path);
+t_exec	*set_up(char *arg);
+
+// list
 t_exec	*new_node(void);
 void	add_back(t_exec **head, t_exec *new);
-char	*get_cmd_path(char *cmd, char *path);
-t_exec	*set_up(char *arg, char *path);
+void	add_back_list(t_list **head, t_list *new);
+t_list	*new_list(char *value);
+size_t	list_size(t_list *list);
 
 // ft_itoa
 char	*ft_itoa(int n);

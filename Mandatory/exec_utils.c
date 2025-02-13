@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:22:25 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 03:44:49 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 04:09:15 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_cmd_path(char *cmd, char *path)
 	return (NULL);
 }
 
-t_exec	*set_up(char *arg, char *path)
+t_exec	*set_up(char *arg)
 {
 	char	**opt;
 	t_exec	*ret;
