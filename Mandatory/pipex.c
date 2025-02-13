@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:07:55 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 05:39:54 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:32:09 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ int	main(int ac, char **av, char **env)
 		i++;
 	}
 	exec(head, ac, av, path);
+	ft_malloc(0, CLEAR);
+	return (0);
 }

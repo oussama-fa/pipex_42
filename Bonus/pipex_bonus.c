@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:49:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:44:13 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 09:33:11 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,17 @@ int	main(int ac, char **av, char **env)
 	if (ac < 5 || !check_files(ac, av, her_doc))
 		return (-1);
 	path = get_path(env);
-	(1) && (i = 2, (her_doc) && (i++), head = NULL);
-	while (i < ac - 1)
+	(1) && (i = 1, (her_doc) && (i++), head = NULL);
+	while (++i < ac - 1)
 	{
 		tmp = set_up(av[i]);
 		add_back(&head, tmp);
-		i++;
 	}
 	if (her_doc)
 	{
 		head->fd_in = get_fd(av[2]);
 		head->here_doc = 1;
 	}
-	return (exec(head, ac, av, path));
+	exec(head, ac, av, path);
+	return (ft_malloc(0, CLEAR), 0);
 }

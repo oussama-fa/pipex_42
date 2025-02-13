@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:04:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:13:54 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:15:30 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	handle_word(t_list **head, int *i, char *arg)
 	char	*value;
 
 	value = NULL;
-	while (arg[*i] && arg[*i] != '\'' && arg[*i] != '\"' && !isspace(arg[*i]))
+	while (arg[*i] && arg[*i] != '\'' && arg[*i] != '\"'
+		&& !ft_isspace(arg[*i]))
 	{
 		value = joinchar(value, arg[*i]);
 		if (!value)
@@ -101,7 +102,7 @@ t_list	*parser(char *arg)
 	flg = 1;
 	while (arg[i])
 	{
-		while (arg[i] && isspace(arg[i]))
+		while (arg[i] && ft_isspace(arg[i]))
 			i++;
 		if (arg[i] != '\'' && arg[i] != '\"')
 		{

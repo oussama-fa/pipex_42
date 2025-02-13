@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:24:36 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:16:49 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <ctype.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
@@ -47,6 +46,7 @@ typedef struct s_fds
 }	t_fds;
 
 // parsing
+int		ft_isspace(char c);
 char	*get_path(char **env);
 char	*joinchar(char *s, char c);
 t_list	*parser(char *arg);

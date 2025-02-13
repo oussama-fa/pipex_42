@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:23:25 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:16:38 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <ctype.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
@@ -70,6 +69,7 @@ char	*get_cmd_path(char *cmd, char *path);
 t_exec	*set_up(char *arg);
 
 // parsing
+int		ft_isspace(char c);
 char	*get_path(char **env);
 t_list	*parser(char *arg);
 char	*joinchar(char *s, char c);

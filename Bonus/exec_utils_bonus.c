@@ -6,11 +6,17 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:34:15 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:01:50 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:11:44 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+int	ft_isspace(char c)
+{
+	return (c == ' ' || c == '\n' || c == '\t'
+		|| c == '\v' || c == '\f' || c == '\r');
+}
 
 void	cmd_not_found(char *cmd)
 {
