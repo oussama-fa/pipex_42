@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:09:22 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 08:32:02 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct s_list
 	char			*value;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_fds
+{
+	int	in;
+	int	out;
+	int	i;
+}	t_fds;
 
 // utils
 char	*ft_strchr(char *s, char c);

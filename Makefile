@@ -6,7 +6,7 @@
 #    By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:53:14 by oufarah           #+#    #+#              #
-#    Updated: 2025/02/13 04:12:21 by oufarah          ###   ########.fr        #
+#    Updated: 2025/02/13 08:17:41 by oufarah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 NAME_B = pipex_bonus
 
 CC = cc
-CFLAG = #-Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror
 
 INC = Mandatory/pipex.h
 INC_B = Bonus/pipex_bonus.h

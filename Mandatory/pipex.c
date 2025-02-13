@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:07:55 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:09:20 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 05:39:54 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int	main(int ac, char **av, char **env)
 	int		i;
 
 	if (ac != 5 || !check_files(ac, av))
+	{
+		write(2, "Invalide Input\n", 15);
 		return (-1);
+	}
 	path = get_path(env);
 	i = 2;
 	head = NULL;

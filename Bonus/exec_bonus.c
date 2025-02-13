@@ -6,67 +6,91 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:33:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 02:28:58 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 08:46:04 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-int	exec(t_exec *head, int ac, char **av, char *path)
+void	innit_fds(t_fds *fds, t_exec *head, int ac, char **av)
 {
-	int	i;
-	int	fd_in;
-	int	fd_out;
-	int	fd[2];
-	int	pid;
-
-	i = 0;
 	if (head->here_doc)
 	{
-		fd_in = head->fd_in;
-		fd_out = open(av[ac - 1], O_CREAT | O_WRONLY | O_APPEND, 0777);
+		fds->in = head->fd_in;
+		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY | O_APPEND, 0777);
 	}
 	else
 	{
-		fd_in = open(av[1], O_RDONLY);
-		fd_out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
+		fds->in = open(av[1], O_RDONLY);
+		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
 	}
+}
+
+void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
+{
+	if (!head->next)
+	{
+		close(fd[1]);
+		fd[1] = fds->out;
+	}
+	if (!fds->i)
+	{
+		dup2(fds->in, 0);
+		close(fds->in);
+	}
+	close(fd[0]);
+	dup2(fd[1], 1);
+	close(fd[1]);
+	head->cmd = get_cmd_path(head->cmd, path);
+}
+
+void	parent_thing(int *fd, t_exec **head, int *i)
+{
+	dup2(fd[0], 0);
+	close(fd[0]);
+	close(fd[1]);
+	*head = (*head)->next;
+	(*i)++;
+}
+
+int	check_exit_status(void)
+{
+	int	status;
+	int	check;
+
+	while (wait(&status) != -1)
+	{
+		check = status;
+	}
+	if (WIFSIGNALED(check) || WEXITSTATUS(check) != 0)
+		return (-1);
+	return (0);
+}
+
+int	exec(t_exec *head, int ac, char **av, char *path)
+{
+	t_fds	fds;
+	int		fd[2];
+	int		pid;
+
+	(1) && (fds.i = 0, fds.in = 0, fds.out = 1);
+	innit_fds(&fds, head, ac, av);
 	while (head)
 	{
 		pipe(fd);
 		pid = fork();
 		if (pid == -1)
-			return (close(fd[0]), close(fd[1]), close(fd_in), close(fd_out), 0);
+			return (close(fd[0]), close(fd[1]),
+				close(fds.in), close(fds.out), 0);
 		if (pid == 0)
 		{
-			if (!head->next)
-			{
-				close(fd[1]);
-				fd[1] = fd_out;
-			}
-			if (!i)
-			{
-				dup2(fd_in, 0);
-				close(fd_in);
-			}
-			close(fd[0]);
-			dup2(fd[1], 1);
-			close(fd[1]);
-			head->cmd = get_cmd_path(head->cmd, path);
+			setup_child(fd, path, head, &fds);
 			execve(head->cmd, head->opt, NULL);
 			perror("pipex");
 			exit(errno);
 		}
 		else
-		{
-			dup2(fd[0], 0);
-			close(fd[0]);
-			close(fd[1]);
-			head = head->next;
-			i++;
-		}
+			parent_thing(fd, &head, &fds.i);
 	}
-	while (wait(NULL) != -1)
-		;
-	return (1);
+	return (check_exit_status());
 }

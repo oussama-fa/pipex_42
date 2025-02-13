@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 04:14:14 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/13 08:32:29 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ typedef struct s_list
 	char			*value;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct s_fds
+{
+	int	in;
+	int	out;
+	int	i;
+}	t_fds;
 
 // parsing
 char	*get_path(char **env);
