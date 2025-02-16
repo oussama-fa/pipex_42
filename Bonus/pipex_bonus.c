@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:49:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:33:11 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 10:51:13 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av, char **env)
 	int		i;
 
 	her_doc = 0;
-	if (ac >= 6 && !strcmp("here_doc", av[1]))
+	if (ac >= 6 && !ft_strncmp("here_doc", av[1], 8))
 		her_doc = 1;
 	if (ac < 5 || !check_files(ac, av, her_doc))
 		return (-1);

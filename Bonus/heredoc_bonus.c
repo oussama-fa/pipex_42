@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:44:41 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:04:55 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 10:50:32 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	read_and_write(char *del, int fd_out)
 		tmp = ft_strchr(line, '\n');
 		if (tmp)
 			*tmp = '\0';
-		if (!strcmp(line, del))
+		if (!ft_strncmp(line, del, ft_strlen(line)))
 			return (close(fd_out), 0);
 		write(fd_out, line, ft_strlen(line));
 		write(fd_out, "\n", 1);
