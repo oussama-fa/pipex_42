@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 18:08:56 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 20:56:07 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 		else
 			parent_thing(fd, &head, &fds.i);
 	}
+	(close(fds.in), close(fds.out));
 	return (check_exit_status());
 }

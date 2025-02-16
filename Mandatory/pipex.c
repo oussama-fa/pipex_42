@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:07:55 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:13:38 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 20:56:20 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ int	is_files_opened(int fail)
 	return (status);
 }
 
+void	final(t_exec *head, int ac, char **av, char *path)
+{
+	int	ret;
+
+	ret = exec(head, ac, av, path);
+	if (ret == 0 && !is_files_opened(0))
+		ft_malloc(1, CLEAR);
+	ft_malloc(ret, CLEAR);
+}
+
 int	check_files(int ac, char **av)
 {
 	int	fd;
@@ -49,16 +59,6 @@ int	check_files(int ac, char **av)
 	}
 	close(fd);
 	return (1);
-}
-
-void	final(t_exec *head, int ac, char **av, char *path)
-{
-	int	ret;
-
-	ret = exec(head, ac, av, path);
-	if (ret == 0 && !is_files_opened(0))
-		ft_malloc(1, CLEAR);
-	ft_malloc(ret, CLEAR);
 }
 
 int	main(int ac, char **av, char **env)

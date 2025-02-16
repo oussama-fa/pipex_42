@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:33:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:56:39 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:28:41 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,15 @@ int	check_exit_status(void)
 	{
 		check = status;
 	}
-	if (WIFSIGNALED(check) || WEXITSTATUS(check) != 0)
-		return (-1);
-	return (0);
+	return (WEXITSTATUS(check));
+}
+
+void	call_execve(t_exec *head, int i)
+{
+	if (!ignore_first_cmd(0, 1) || i > 0)
+		execve(head->cmd, head->opt, NULL);
+	else
+		exit(0);
 }
 
 int	exec(t_exec *head, int ac, char **av, char *path)
@@ -85,7 +91,7 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 		if (pid == 0)
 		{
 			setup_child(fd, path, head, &fds);
-			execve(head->cmd, head->opt, NULL);
+			call_execve(head, fds.i);
 			perror("pipex");
 			exit(errno);
 		}

@@ -6,11 +6,39 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:49:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 10:51:13 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:26:53 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+int	ignore_first_cmd(int res, int get)
+{
+	static int	ret;
+
+	if (!get)
+		ret = res;
+	return (ret);
+}
+
+int	is_files_opened(int fail)
+{
+	static int	status = 1;
+
+	if (fail)
+		status = 0;
+	return (status);
+}
+
+void	final(t_exec *head, int ac, char **av, char *path)
+{
+	int	ret;
+
+	ret = exec(head, ac, av, path);
+	if (ret == 0 && !is_files_opened(0))
+		ft_malloc(1, CLEAR);
+	ft_malloc(ret, CLEAR);
+}
 
 int	check_files(int ac, char **av, int here_doc)
 {
@@ -20,12 +48,18 @@ int	check_files(int ac, char **av, int here_doc)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (fd == -1)
-			return (0);
+		{
+			ignore_first_cmd(1, 0);
+			perror("pipex ");
+		}
 		close(fd);
 	}
 	fd = open(av[ac -1], O_CREAT | O_WRONLY);
 	if (fd == -1)
-		return (0);
+	{
+		is_files_opened(1);
+		perror("pipex ");
+	}
 	close(fd);
 	return (1);
 }
@@ -55,6 +89,6 @@ int	main(int ac, char **av, char **env)
 		head->fd_in = get_fd(av[2]);
 		head->here_doc = 1;
 	}
-	exec(head, ac, av, path);
-	return (ft_malloc(0, CLEAR), 0);
+	final(head, ac, av, path);
+	return (0);
 }

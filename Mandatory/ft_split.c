@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:09:48 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:28:22 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:17:31 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ static char	*ft_strndup(char *str, size_t n)
 	return (s);
 }
 
-static char	**free_it(char **s, int i)
-{
-	while (i--)
-		free(s[i]);
-	free(s);
-	return (NULL);
-}
-
 static int	ft_split_helper(int *i, char const *s, char c)
 {
 	int	start;
@@ -90,7 +82,7 @@ char	**ft_split(char const *s, char c)
 		{
 			strs[word++] = ft_strndup((char *)s + start, i - start);
 			if (!strs[word - 1])
-				return (free_it(strs, word));
+				return (NULL);
 		}
 	}
 	strs[word] = NULL;

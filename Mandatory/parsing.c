@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:04:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 17:16:14 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:22:25 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_path(char **env)
 	incr = 4;
 	while (env && env[i])
 	{
-		if (!strncmp(env[i], "PATH", 4))
+		if (!ft_strncmp(env[i], "PATH", 4))
 		{
 			if (env[i][incr] == '=')
 				incr++;

@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:32:08 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:15:53 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:23:58 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*get_path(char **env)
 	incr = 4;
 	while (env && env[i])
 	{
-		if (!strncmp(env[i], "PATH", 4))
+		if (!ft_strncmp(env[i], "PATH", 4))
 		{
 			if (env[i][incr] == '=')
 				incr++;
@@ -95,27 +95,25 @@ t_list	*parser(char *arg)
 {
 	t_list	*head;
 	int		i;
-	int		flg;
 
-	i = 0;
-	flg = 1;
 	head = NULL;
+	i = 0;
 	while (arg[i])
 	{
 		while (arg[i] && ft_isspace(arg[i]))
 			i++;
 		if (arg[i] != '\'' && arg[i] != '\"')
 		{
-			flg = handle_word(&head, &i, arg);
-			if (flg == 0)
+			if (!handle_word(&head, &i, arg))
 				return (NULL);
 		}
 		else if (arg[i])
 		{
-			flg = handle_quotes(&head, &i, arg);
-			if (flg == 0)
+			if (!handle_quotes(&head, &i, arg))
 				return (NULL);
 		}
 	}
+	if (!head)
+		head = new_list(ft_strdup(arg));
 	return (head);
 }

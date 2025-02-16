@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:36:12 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:03:38 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:16:59 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,17 @@ static char	*read_to_rest(int fd, char *rest)
 
 	temp = ft_malloc((size_t)BUFFER_SIZE + 1, ALLOC);
 	if (!temp)
-		return (free(rest), NULL);
+		return (NULL);
 	while (!ft_strchr_gnl(rest, '\n'))
 	{
 		rd = read(fd, temp, BUFFER_SIZE);
 		if (rd == -1)
-			return (free(temp), free(rest), NULL);
+			return (NULL);
 		if (rd == 0)
 			break ;
 		temp[rd] = '\0';
 		rest = ft_strjoin_gnl(rest, temp);
 	}
-	free(temp);
 	return (rest);
 }
 
@@ -73,10 +72,9 @@ static char	*extract_line(char **rest)
 
 	line = get_linis(*rest);
 	if (!line)
-		return (free(*rest), *rest = NULL, NULL);
+		return (*rest = NULL, NULL);
 	temp = *rest;
 	*rest = get_rest(*rest);
-	free(temp);
 	return (line);
 }
 

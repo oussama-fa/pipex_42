@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 02:25:51 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 09:14:17 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:38:26 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ char	*ft_strdup(char *s)
 	return (ret);
 }
 
-int	ft_strncmp(char *s1, char *s2, size_t size)
+int	ft_strncmp(char *s1, char *s2, size_t n)
 {
-	size_t	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i] && i < size)
-		i++;
-	if (i == size)
+	if (!n)
 		return (0);
-	return (s1[i] == s2[i]);
+	while (*s1 && *s1 == *s2 && --n)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

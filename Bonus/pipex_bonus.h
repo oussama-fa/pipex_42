@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:16:49 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 20:55:46 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	add_back(t_exec **head, t_exec *new);
 void	add_back_list(t_list **head, t_list *new);
 t_list	*new_list(char *value);
 size_t	list_size(t_list *list);
+int		ignore_first_cmd(int res, int get);
+int		is_files_opened(int fail);
 
 // ft_itoa
 char	*ft_itoa(int n);
