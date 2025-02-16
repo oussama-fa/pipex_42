@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:59:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:59:19 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:32:08 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*ft_malloc(size_t size, int flag)
 	if (flag == CLEAR)
 	{
 		clear_it(garbage);
-		exit(0);
+		exit(size);
 	}
 	ret = malloc(size);
 	if (!ret)

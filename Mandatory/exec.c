@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:14:52 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 18:08:56 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ int	check_exit_status(void)
 	{
 		check = status;
 	}
-	if (WIFSIGNALED(check) || WEXITSTATUS(check) != 0)
-		return (-1);
-	return (0);
+	return (WEXITSTATUS(check));
 }
 
 void	parent_thing(int *fd, t_exec **head, int *i)
@@ -53,6 +51,14 @@ void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
 	head->cmd = get_cmd_path(head->cmd, path);
 }
 
+void	call_execve(t_exec *head, int i)
+{
+	if (!ignore_first_cmd(0, 1) || i > 0)
+		execve(head->cmd, head->opt, NULL);
+	else
+		exit(0);
+}
+
 int	exec(t_exec *head, int ac, char **av, char *path)
 {
 	t_fds	fds;
@@ -67,11 +73,11 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 		pid = fork();
 		if (pid == -1)
 			return (close(fd[0]), close(fd[1]),
-				close(fds.in), close(fds.out), 0);
+				scls(fds.in), scls(fds.out), 0);
 		if (pid == 0)
 		{
 			setup_child(fd, path, head, &fds);
-			execve(head->cmd, head->opt, NULL);
+			call_execve(head, fds.i);
 			perror("pipex");
 			exit(errno);
 		}

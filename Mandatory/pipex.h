@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:16:38 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:08:36 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ size_t	ft_strlen(char *s);
 int		ft_strncmp(char *s1, char *s2, size_t size);
 
 // exec
+int		scls(int fd);
+int		ignore_first_cmd(int res, int get);
 int		exec(t_exec *head, int ac, char **av, char *path);
+int		is_files_opened(int fail);
 
 // list
 t_exec	*new_node(void);

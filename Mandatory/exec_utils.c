@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:22:25 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:11:51 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:13:15 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,11 @@ t_exec	*set_up(char *arg)
 	opt[i] = NULL;
 	ret->opt = opt;
 	return (ret);
+}
+
+int	scls(int fd)
+{
+	if (fd > 2)
+		close(fd);
+	return (1);
 }

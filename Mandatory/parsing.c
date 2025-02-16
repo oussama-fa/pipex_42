@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:04:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:15:30 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 17:16:14 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,27 +95,25 @@ t_list	*parser(char *arg)
 {
 	t_list	*head;
 	int		i;
-	int		flg;
 
 	head = NULL;
 	i = 0;
-	flg = 1;
 	while (arg[i])
 	{
 		while (arg[i] && ft_isspace(arg[i]))
 			i++;
 		if (arg[i] != '\'' && arg[i] != '\"')
 		{
-			flg = handle_word(&head, &i, arg);
-			if (flg == 0)
+			if (!handle_word(&head, &i, arg))
 				return (NULL);
 		}
 		else if (arg[i])
 		{
-			flg = handle_quotes(&head, &i, arg);
-			if (flg == 0)
+			if (!handle_quotes(&head, &i, arg))
 				return (NULL);
 		}
 	}
+	if (!head)
+		head = new_list(ft_strdup(arg));
 	return (head);
 }
