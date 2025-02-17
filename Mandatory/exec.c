@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/17 16:41:28 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:57:42 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	check_exit_status(void)
 
 int	parent_thing(int *fd, t_exec **head, int *i)
 {
-	dup2(fd[0], 0);
+	if (dup2(fd[0], 0) == -1)
+		perror("dup2");
 	close(fd[0]);
 	close(fd[1]);
 	*head = (*head)->next;
@@ -57,7 +58,7 @@ void	call_execve(t_exec *head, int i)
 	if (!ignore_first_cmd(0, 1) || i > 0)
 		execve(head->cmd, head->opt, NULL);
 	else
-		ft_malloc(0, CLEAR);
+		ft_malloc(1, CLEAR);
 }
 
 int	exec(t_exec *head, int ac, char **av, char *path)
