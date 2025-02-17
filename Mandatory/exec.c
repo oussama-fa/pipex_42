@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/17 16:57:42 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 17:03:59 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
 	}
 	if (!fds->i)
 	{
-		dup2(fds->in, 0);
+		if (dup2(fds->in, 0) == -1)
+			perror("dup2");
 		close(fds->in);
 	}
 	close(fd[0]);
-	dup2(fd[1], 1);
+	if (dup2(fd[1], 1) == -1)
+		perror("dup2");
 	close(fd[1]);
 	head->cmd = get_cmd_path(head->cmd, path);
 }
