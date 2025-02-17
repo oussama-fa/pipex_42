@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:05:35 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:08:36 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:18:53 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*ft_strdup(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 int		ft_strncmp(char *s1, char *s2, size_t size);
+int		ft_isspace(char c);
 
 // exec
 int		scls(int fd);

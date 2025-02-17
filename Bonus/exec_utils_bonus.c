@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:34:15 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/17 14:17:23 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:19:38 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,29 @@ void	innit_fds(t_fds *fds, t_exec *head, int ac, char **av)
 	else
 	{
 		fds->in = open(av[1], O_RDONLY);
-		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
+		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	}
-}
-
-int	ft_isspace(char c)
-{
-	return (c == ' ' || c == '\n' || c == '\t'
-		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 void	cmd_not_found(char *cmd)
 {
 	write(2, cmd, ft_strlen(cmd));
 	write(2, ": command not found\n", ft_strlen(": command not found\n"));
-	exit(127);
+	ft_malloc(127, CLEAR);
+}
+
+int	is_empty(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (!s || !*s)
+		return (1);
+	while (s[i] && ft_isspace(s[i]))
+		i++;
+	if (!s[i])
+		return (1);
+	return (0);
 }
 
 char	*get_cmd_path(char *cmd, char *path)
@@ -56,7 +64,7 @@ char	*get_cmd_path(char *cmd, char *path)
 	if (!arr)
 		return (NULL);
 	i = 0;
-	while (arr[i])
+	while (arr[i] && !is_empty(cmd))
 	{
 		tmp = ft_strjoin(arr[i], "/");
 		tmp = ft_strjoin(tmp, cmd);

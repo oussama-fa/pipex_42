@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:10:29 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 20:56:07 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 15:55:41 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	call_execve(t_exec *head, int i)
 	if (!ignore_first_cmd(0, 1) || i > 0)
 		execve(head->cmd, head->opt, NULL);
 	else
-		exit(0);
+		ft_malloc(0, CLEAR);
 }
 
 int	exec(t_exec *head, int ac, char **av, char *path)
