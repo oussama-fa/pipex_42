@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:59:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:18:26 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:34:07 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	clear_it(t_garbage *garbage)
 		free(garbage);
 		garbage = clear;
 	}
+	clear_fds(0, 0);
 }
 
 void	*ft_malloc(size_t size, int flag)

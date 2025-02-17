@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 08:58:53 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 08:58:56 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:39:46 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct s_garbage
 	struct s_garbage	*next;
 
 }	t_garbage;
+
+int		clear_fds(int fd, int save);
 
 #endif

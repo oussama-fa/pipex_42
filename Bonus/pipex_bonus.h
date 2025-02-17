@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/17 16:20:21 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:42:55 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ char	*ft_strdup(char *s);
 char	*ft_strchr(char *s, char c);
 int		ft_strncmp(char *s1, char *s2, size_t size);
 int		ft_isspace(char c);
+int		scls(int fd);
 
 // gnl utils
 size_t	ft_strlen(const char *s);

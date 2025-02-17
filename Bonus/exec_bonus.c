@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:33:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/17 15:55:55 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 16:39:24 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
 	head->cmd = get_cmd_path(head->cmd, path);
 }
 
-void	parent_thing(int *fd, t_exec **head, int *i)
+int	parent_thing(int *fd, t_exec **head, int *i)
 {
 	if (dup2(fd[0], 0) == -1)
 		perror("dup2");
@@ -38,6 +38,7 @@ void	parent_thing(int *fd, t_exec **head, int *i)
 	close(fd[1]);
 	*head = (*head)->next;
 	(*i)++;
+	return (1);
 }
 
 int	check_exit_status(void)
@@ -68,14 +69,15 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 
 	(1) && (fds.i = 0, fds.in = 0, fds.out = 1);
 	innit_fds(&fds, head, ac, av);
+	(1) && (clear_fds(fds.in, 1), clear_fds(fds.out, 1));
 	while (head)
 	{
 		if (pipe(fd) == -1)
-			perror("pipe");
+			return (perror("pipe"), ft_malloc(0, CLEAR), 1);
 		pid = fork();
 		if (pid == -1)
-			return (close(fd[0]), close(fd[1]),
-				close(fds.in), close(fds.out), 0);
+			return (close(fd[0]), close(fd[1]), \
+				perror("fork"), ft_malloc(0, CLEAR), 0);
 		if (pid == 0)
 		{
 			setup_child(fd, path, head, &fds);
@@ -83,8 +85,7 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 			perror("pipex");
 			exit(errno);
 		}
-		else
-			parent_thing(fd, &head, &fds.i);
+		(pid) && (parent_thing(fd, &head, &fds.i));
 	}
-	return (close(fds.in), close(fds.out), check_exit_status());
+	return (check_exit_status());
 }

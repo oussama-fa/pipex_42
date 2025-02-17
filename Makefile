@@ -6,7 +6,7 @@
 #    By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:53:14 by oufarah           #+#    #+#              #
-#    Updated: 2025/02/17 16:20:36 by oufarah          ###   ########.fr        #
+#    Updated: 2025/02/17 16:22:45 by oufarah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ INC_GARBAGE_B = Bonus/garbage_bonus.h
 RM = rm -f
 
 SRC = Mandatory/exec.c Mandatory/exec_utils.c Mandatory/ft_split.c  Mandatory/parsing.c \
-		Mandatory/pipex.c  Mandatory/utils.c Mandatory/list.c Mandatory/garbage.c
+		Mandatory/pipex.c  Mandatory/utils.c Mandatory/list.c Mandatory/garbage.c Mandatory/utils2.c
 SRC_B = Bonus/exec_bonus.c  Bonus/exec_utils_bonus.c  Bonus/ft_itoa_bonus.c  Bonus/ft_split_bonus.c \
 		Bonus/gnl_bonus.c  Bonus/gnl_utils_bonus.c  Bonus/heredoc_bonus.c  Bonus/parsing_bonus.c \
-		Bonus/pipex_bonus.c Bonus/utils_bonus.c Bonus/list_bonus.c  Bonus/garbage_bonus.c
+		Bonus/pipex_bonus.c Bonus/utils_bonus.c Bonus/list_bonus.c  Bonus/garbage_bonus.c Bonus/utils2_bonus.c
 
 OBJ = $(SRC:.c=.o)
 OBJ_B = $(SRC_B:.c=.o)
