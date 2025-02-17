@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:44:41 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:21:29 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:16:54 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ char	*get_file_name(void)
 	return (file);
 }
 
+int	ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+
 int	read_and_write(char *del, int fd_out)
 {
 	char	*line;
@@ -38,7 +48,7 @@ int	read_and_write(char *del, int fd_out)
 		tmp = ft_strchr(line, '\n');
 		if (tmp)
 			*tmp = '\0';
-		if (!ft_strncmp(line, del, ft_strlen(line)))
+		if (!ft_strcmp(line, del))
 			return (close(fd_out), 0);
 		write(fd_out, line, ft_strlen(line));
 		write(fd_out, "\n", 1);

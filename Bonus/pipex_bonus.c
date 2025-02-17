@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:49:17 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:26:53 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:08:41 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_files(int ac, char **av, int here_doc)
 		}
 		close(fd);
 	}
-	fd = open(av[ac -1], O_CREAT | O_WRONLY);
+	fd = open(av[ac -1], O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	if (fd == -1)
 	{
 		is_files_opened(1);

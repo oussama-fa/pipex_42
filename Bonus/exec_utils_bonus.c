@@ -6,11 +6,25 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:34:15 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/13 10:11:44 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:17:23 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
+
+void	innit_fds(t_fds *fds, t_exec *head, int ac, char **av)
+{
+	if (head->here_doc)
+	{
+		fds->in = head->fd_in;
+		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY | O_APPEND, 0777);
+	}
+	else
+	{
+		fds->in = open(av[1], O_RDONLY);
+		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
+	}
+}
 
 int	ft_isspace(char c)
 {

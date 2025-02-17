@@ -6,25 +6,11 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:33:18 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 19:28:41 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:17:18 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-
-void	innit_fds(t_fds *fds, t_exec *head, int ac, char **av)
-{
-	if (head->here_doc)
-	{
-		fds->in = head->fd_in;
-		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY | O_APPEND, 0777);
-	}
-	else
-	{
-		fds->in = open(av[1], O_RDONLY);
-		fds->out = open(av[ac - 1], O_CREAT | O_WRONLY, 0777);
-	}
-}
 
 void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
 {
@@ -46,7 +32,8 @@ void	setup_child(int *fd, char *path, t_exec *head, t_fds *fds)
 
 void	parent_thing(int *fd, t_exec **head, int *i)
 {
-	dup2(fd[0], 0);
+	if (dup2(fd[0], 0) == -1)
+		perror("dup2");
 	close(fd[0]);
 	close(fd[1]);
 	*head = (*head)->next;
@@ -83,7 +70,8 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 	innit_fds(&fds, head, ac, av);
 	while (head)
 	{
-		pipe(fd);
+		if (pipe(fd) == -1)
+			perror("pipe");
 		pid = fork();
 		if (pid == -1)
 			return (close(fd[0]), close(fd[1]),
@@ -98,5 +86,5 @@ int	exec(t_exec *head, int ac, char **av, char *path)
 		else
 			parent_thing(fd, &head, &fds.i);
 	}
-	return (check_exit_status());
+	return (close(fds.in), close(fds.out), check_exit_status());
 }

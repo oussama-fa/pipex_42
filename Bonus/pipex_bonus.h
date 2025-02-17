@@ -6,7 +6,7 @@
 /*   By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 01:29:36 by oufarah           #+#    #+#             */
-/*   Updated: 2025/02/16 20:55:46 by oufarah          ###   ########.fr       */
+/*   Updated: 2025/02/17 14:17:39 by oufarah          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		check_files(int ac, char **av, int here_doc);
 
 // exec
 int		exec(t_exec *head, int ac, char **av, char *path);
+void	innit_fds(t_fds *fds, t_exec *head, int ac, char **av);
 
 // exec utils
 char	*get_cmd_path(char *cmd, char *path);
