@@ -6,7 +6,7 @@
 #    By: oufarah <oufarah@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/09 19:53:14 by oufarah           #+#    #+#              #
-#    Updated: 2025/02/17 16:54:20 by oufarah          ###   ########.fr        #
+#    Updated: 2025/02/18 14:38:59 by oufarah          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,8 @@ NAME_B = pipex_bonus
 CC = cc
 CFLAG = -Wall -Wextra -Werror
 
-INC = Mandatory/pipex.h
-INC_GARBAGE = Mandatory/garbage.h
-INC_B = Bonus/pipex_bonus.h
-INC_GARBAGE_B = Bonus/garbage_bonus.h
+INC = Mandatory/pipex.h Mandatory/garbage.h
+INC_B = Bonus/pipex_bonus.h Bonus/garbage_bonus.h
 
 RM = rm -f
 
@@ -42,10 +40,10 @@ bonus : $(NAME_B)
 $(NAME_B): $(OBJ_B)
 	$(CC) $(CFLAG) $(OBJ_B) -o $(NAME_B) 
 
-%.o:%.c $(INC) $(INC_GARBAGE)
+%.o:%.c $(INC)
 	$(CC) $(CFLAG) -c $< -o $@
 
-Bonus/%.o: Bonus/%.c $(INC_B) $(INC_GARBAGE_B)
+Bonus/%.o: Bonus/%.c $(INC_B)
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean:
