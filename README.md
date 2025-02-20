@@ -2,10 +2,6 @@
 
 ![42 Project Badge](https://img.shields.io/badge/1337-Project-blue?style=for-the-badge&logo=42)
 
-![GitHub code size](https://img.shields.io/github/languages/code-size/oussama-fa/pipex_42?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/oussama-fa/pipex_42?style=flat-square)
-
-
 ---
 
 ## Overview
